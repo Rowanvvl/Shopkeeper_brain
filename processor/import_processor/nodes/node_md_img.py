@@ -1,12 +1,25 @@
+import base64
 import os
 import re
 import sys
+from mimetypes import guess_type
 from pathlib import Path
 
+from langchain_core.messages import HumanMessage
+from langchain_core.output_parsers import StrOutputParser
+from minio.deleteobjects import DeleteObject
+
+from common.config.lm_config import lm_config
+from common.config.minio_config import minio_config
 from common.logging.logger import logger, node_log, step_log
 from processor.import_processor.state import ImportGraphState
+from utils.clients.minio_utils import get_minio_client
+from utils.lm.lm_utils import get_llm_client
+from utils.load_prompt import load_prompt
+from utils.rate_limit_utils import apply_api_rate_limit
 from utils.task_utils import add_done_task, add_running_task
-
+from dotenv import load_dotenv
+load_dotenv()
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp"}
 
 def is_supported_image(filename: str) -> bool:
@@ -60,11 +73,82 @@ def step_2_scan_images(md_content, md_images_dir_obj):
     return image_info_list
 
 @step_log("step_3_image_summary")
-def step_3_image_summary(image_info_list, stem):
-    pass
+def step_3_image_summary(image_info_list, root_folder):
+    summary_image_dict = {}
+    vl_model = get_llm_client(model=lm_config.vl_model)
+    for image_name,image_path,image_content in image_info_list:
+        image_prompt_text = load_prompt("image_summary",root_folder=root_folder,image_content=image_content)
+        image_path_obj = Path(image_path)
+        image_base64_str = base64.b64encode(image_path_obj.read_bytes()).decode(encoding="utf-8")
+        message = HumanMessage(
+            content=[
+                {
+                    "type": "image_url",
+                    "image_url": {"url": f"data:{guess_type(image_name)[0]};base64,{image_base64_str}"}
+                },  # 图片
+                {
+                    "type": "text", "text": image_prompt_text
+                }  # 文本
+            ]
+        )
+        chains = vl_model | StrOutputParser()
+        apply_api_rate_limit()
+        image_summary=chains.invoke([message])
+        summary_image_dict[image_name] = image_summary
+    return summary_image_dict
 
 
-@node_log("node_md_img")
+@step_log("step_4_upload_images_get_url")
+def step_4_upload_images_get_url(image_info_list, stem):
+    minio_client = get_minio_client()
+    list_object = minio_client.list_objects(
+        bucket_name=minio_config.bucket_name,
+        prefix=minio_config.minio_img_dir[1:]+"/"+stem,
+        recursive=True
+    )
+    delete_object_list = [DeleteObject(obj.object_name) for obj in list_object]
+    errors = minio_client.remove_objects(
+        bucket_name=minio_config.bucket_name,
+        delete_object_list=delete_object_list
+    )
+    for error in errors:
+        logger.warning("删除图片出现问题")
+
+    image_url_dict = {}
+    for image_name,image_path,_ in image_info_list:
+        try:
+            minio_client.fput_object(
+                bucket_name=minio_config.bucket_name,
+                object_name=minio_config.minio_img_dir+"/"+stem+"/"+image_name,
+                file_path=image_path,
+                content_type=guess_type(image_name)[0]
+            )
+            url = f"http://{minio_config.endpoint}/{minio_config.bucket_name}{minio_config.minio_img_dir}/{stem}/{image_name}"
+            image_url_dict[image_name] = url
+            logger.debug(f"{image_name}已经完成上传,对应的地址为:{url}")
+        except Exception as e:
+            logger.warning(f"{image_name}上传失败，跳过")
+            continue
+
+    return image_url_dict
+
+@step_log("step_5_md_content_image_replace")
+def step_5_md_content_image_replace(md_content, summary_image_dict, image_url_dict):
+    for image_name,image_summary in summary_image_dict.items():
+        image_url = image_url_dict.get(image_name)
+        reg = re.compile(r"\!\[.*?\]\(.*?"+re.escape(image_name)+r".*?\)")
+        md_content = reg.sub(lambda _:f"![{image_summary}]({image_url})",md_content)
+        logger.debug(f"已经完成:{image_name}图片的替换,替换入的描述:{image_summary},替换的地址:{image_url}")
+    return md_content
+
+@step_log("step_6_md_content_image_replace")
+def step_6_backup_new_md_content(md_content_new, md_path_obj):
+    md_path_obj_new = md_path_obj.with_name(f"{md_path_obj.stem}_new.md")
+    md_path_obj_new.write_text(data=md_content_new,encoding="utf-8")
+    logger.info(f"已经将新内容备份到{str(md_path_obj_new)}")
+    return md_path_obj_new
+
+
 def node_md_img(state: ImportGraphState) -> ImportGraphState:
     """
     节点: 图片处理 (node_md_img)
@@ -78,7 +162,15 @@ def node_md_img(state: ImportGraphState) -> ImportGraphState:
     # 2. 获取图片的信息和上下文
     # list((图片名,图片地址,(前缀,后缀)))  =  scan_images(md_content,md_images_dir_obj)
     image_info_list: list[tuple[str, str, tuple[str, str]]] = step_2_scan_images(md_content, md_images_dir_obj)
+    # 3. 调用视觉模型 image_info_list [图片名,图片地址,上下文] -> {图片名:总结内容}
     image_summary_dict: dict[str, str] = step_3_image_summary(image_info_list, md_path_obj.stem)
+    # 4. 将图片信息传递到minio的服务器,并获取图片和对应的网络地址
+    image_url_dict: dict[str, str] = step_4_upload_images_get_url(image_info_list, md_path_obj.stem)
+    # 5. 原md_content内图片 ![](./xx) -> ![图片的描述](图片的网络地址)
+    # summary_image_dict -> image_name : 图片的描述  image_url_dict  image_name : url
+    md_content_new: str = step_5_md_content_image_replace(md_content, image_summary_dict, image_url_dict)
+    # 6. 将md_content_new进行磁盘化备份(1.新和旧进行对比测试 2.后续节点md_content内容丢失->再次读取)
+    md_path_obj_new: Path = step_6_backup_new_md_content(md_content_new, md_path_obj)
     add_done_task(state['task_id'], 'node_md_img')
     return state
 
