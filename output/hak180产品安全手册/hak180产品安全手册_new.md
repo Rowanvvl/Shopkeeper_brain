@@ -1,4 +1,4 @@
-![这张图片是HAK 180烫金机产品安全手册中的条形码，下方标注编号D01WD7001-00及SCHN。](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/f93ddcd837fa399f0c165da43b0badb013c2961acc828a095c6d98f0a660dbca.jpg)  
+![HAK 180烫金机产品安全手册封面条形码](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/f93ddcd837fa399f0c165da43b0badb013c2961acc828a095c6d98f0a660dbca.jpg)  
 D01WD7001-00
 
 SCHN
@@ -71,11 +71,10 @@ http://www.95105369.com。
 
 •	使用本设备之后短时间内，本设备的一些内部零件仍然处于极热状态。打开前盖时，请勿触摸以灰色标记的区域。存在烧伤的风险。先等待设备冷却下来，再触摸设备的内部零件。
 
-![**图片总结：**
-图示警告打开打印机前盖时，严禁触摸灰色高温区域，以免造成烫伤。](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/37eecd8ac02745dac415a628b51c26974067062c9b9747c069579fdaa99dbae9.jpg)  
+![HAK180设备内部高温区域警示及冷却后操作指南。](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/37eecd8ac02745dac415a628b51c26974067062c9b9747c069579fdaa99dbae9.jpg)  
 儎⑟ഴḽ䆜઀ᛞ࠽व䀜᪮儎⑟Ⲻ䇴༽䜞ԬȾ
 
-![这张图片展示了在打印机内部手动操作（如安装或更换）部件（如色带盒）的示意图。](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/71f9e17a760882436455f7ddc3a5fd358ce821ceb6e598b76d013d93dc26c943.jpg)
+![图中展示了一只手正在操作打印机内部组件，可能是在安装或更换墨盒/硒鼓。](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/71f9e17a760882436455f7ddc3a5fd358ce821ceb6e598b76d013d93dc26c943.jpg)
 
 ## 电源线
 
@@ -123,9 +122,9 @@ http://www.95105369.com。
 
 •	为了防止人员受伤，请谨慎操作，避免将手指放置在图中所示的区域中。
 
-![这张图片是设备安全警示图，用禁止符号和局部特写提醒用户：操作时严禁将手指放入设备内部齿轮等危险区域，以防夹伤。](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/944ad0b1ae642d4a65bc1b40c979beeb12bc30e6a409b9d9666ee013ff48cc60.jpg)
+![禁止将手指伸入打印机内部进纸区域的安全警示示意图。](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/944ad0b1ae642d4a65bc1b40c979beeb12bc30e6a409b9d9666ee013ff48cc60.jpg)
 
-![**安全警告：严禁将手指放在打印机出纸口附近区域，以防夹伤。**](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/3bf3b3639360a2c43c223a6ee46c44b27d54f4a79506a17a8b99e6ba4703df40.jpg)
+![禁止将手指放入打印机进纸区域的安全警示示意图](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/3bf3b3639360a2c43c223a6ee46c44b27d54f4a79506a17a8b99e6ba4703df40.jpg)
 
 ## 电源线
 
@@ -139,10 +138,10 @@ http://www.95105369.com。
 
 •	提起本设备时，请使用双手抓稳本设备的两侧。如果抓住的是进纸托板和出纸盒，它们可能会掉下来。必须通过将双手放在本设备下面来搬运本设备。
 
-![**图片展示了搬运设备时的正确与错误姿势：应双手托底，严禁抓握进纸托板或出纸盒。**](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/0bc44b278a939f7ec6ff239a4423c46a74a6e07572150f9e912f5fa55e0f598d.jpg)  
+![正确与错误的设备搬运方式示意图](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/0bc44b278a939f7ec6ff239a4423c46a74a6e07572150f9e912f5fa55e0f598d.jpg)  
 确保本设备的任何部位均未伸出设备所在的桌面或支架。特别是当本设备位于桌面、支架等边缘时，请勿让出纸盒打开。确保本设备位于平整、水平且稳定的表面上，避免震动。不遵守这些预防措施可能导致设备跌落，从而导致用户的人身伤害以及设备严重损坏。
 
-![**图片总结：** 图示为禁止将设备置于桌面边缘且出纸盒打开，以防跌落造成损坏或伤害。](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/baa3590221a744dda3b19dfb126ddc6a3fd79b59cf19ff8d6793b51114c0d57b.jpg)
+![禁止在设备边缘打开出纸盒，需确保设备放置在平整稳定的表面上。](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/baa3590221a744dda3b19dfb126ddc6a3fd79b59cf19ff8d6793b51114c0d57b.jpg)
 
 “重要事项”表示可能导致财产损失或本设备功能丧失的潜在危险情况。
 
