@@ -21,12 +21,12 @@ CHUNK_OVERLAP = 50
 CHUNK_MIN = 400
 @step_log("step_1_validate_get_data")
 def step_1_validate_get_data(state):
-    md_content = state["md_content"]
-    file_title = state["file_title"]
-    md_path = state["md_path"]
+    md_content = state.get("md_content")
+    file_title = state.get("file_title")
+    md_path = state.get("md_path")
     if not md_content:
         if (not md_path) or (not Path(md_path).is_file()):
-            logger.errpr("内容为空，文件不存在，终止")
+            logger.error("内容为空，文件不存在，终止")
             raise ValueError("内容为空，文件不存在，终止")
         md_content = Path(md_path).read_text(encoding="utf-8")
         state["md_content"] = md_content

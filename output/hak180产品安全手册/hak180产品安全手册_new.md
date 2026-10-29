@@ -1,4 +1,4 @@
-![HAK 180烫金机产品安全手册封面条形码](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/f93ddcd837fa399f0c165da43b0badb013c2961acc828a095c6d98f0a660dbca.jpg)  
+![HAK 180烫金机产品安全手册的条形码。](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/f93ddcd837fa399f0c165da43b0badb013c2961acc828a095c6d98f0a660dbca.jpg)  
 D01WD7001-00
 
 SCHN
@@ -71,7 +71,7 @@ http://www.95105369.com。
 
 •	使用本设备之后短时间内，本设备的一些内部零件仍然处于极热状态。打开前盖时，请勿触摸以灰色标记的区域。存在烧伤的风险。先等待设备冷却下来，再触摸设备的内部零件。
 
-![HAK180设备内部高温区域警示及冷却后操作指南。](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/37eecd8ac02745dac415a628b51c26974067062c9b9747c069579fdaa99dbae9.jpg)  
+![HAK180设备内部高温区域警示图，提示用户避免触摸灰色标记的极热部件以防烫伤。](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/37eecd8ac02745dac415a628b51c26974067062c9b9747c069579fdaa99dbae9.jpg)  
 儎⑟ഴḽ䆜઀ᛞ࠽व䀜᪮儎⑟Ⲻ䇴༽䜞ԬȾ
 
 ![图中展示了一只手正在操作打印机内部组件，可能是在安装或更换墨盒/硒鼓。](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/71f9e17a760882436455f7ddc3a5fd358ce821ceb6e598b76d013d93dc26c943.jpg)
@@ -138,7 +138,7 @@ http://www.95105369.com。
 
 •	提起本设备时，请使用双手抓稳本设备的两侧。如果抓住的是进纸托板和出纸盒，它们可能会掉下来。必须通过将双手放在本设备下面来搬运本设备。
 
-![正确与错误的设备搬运方式示意图](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/0bc44b278a939f7ec6ff239a4423c46a74a6e07572150f9e912f5fa55e0f598d.jpg)  
+![正确与错误搬运设备的方式示意图](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/0bc44b278a939f7ec6ff239a4423c46a74a6e07572150f9e912f5fa55e0f598d.jpg)  
 确保本设备的任何部位均未伸出设备所在的桌面或支架。特别是当本设备位于桌面、支架等边缘时，请勿让出纸盒打开。确保本设备位于平整、水平且稳定的表面上，避免震动。不遵守这些预防措施可能导致设备跌落，从而导致用户的人身伤害以及设备严重损坏。
 
 ![禁止在设备边缘打开出纸盒，需确保设备放置在平整稳定的表面上。](http://192.168.10.8:9000/knowledge-base-files/upload-images/hak180产品安全手册/baa3590221a744dda3b19dfb126ddc6a3fd79b59cf19ff8d6793b51114c0d57b.jpg)

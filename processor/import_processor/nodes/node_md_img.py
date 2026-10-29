@@ -171,6 +171,9 @@ def node_md_img(state: ImportGraphState) -> ImportGraphState:
     md_content_new: str = step_5_md_content_image_replace(md_content, image_summary_dict, image_url_dict)
     # 6. 将md_content_new进行磁盘化备份(1.新和旧进行对比测试 2.后续节点md_content内容丢失->再次读取)
     md_path_obj_new: Path = step_6_backup_new_md_content(md_content_new, md_path_obj)
+    # 8. 更新state
+    state['md_content'] = md_content_new
+    state['md_path'] = str(md_path_obj_new)
     add_done_task(state['task_id'], 'node_md_img')
     return state
 
